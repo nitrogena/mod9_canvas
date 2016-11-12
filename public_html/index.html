@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            
+            function dibujaDiagonal (){
+                var canvas = document.getElementById('diagonal');
+                var contexto = canvas.getContext('2d');
+                
+                contexto.beginPath();
+                contexto.moveTo(70, 140);
+                contexto.lineTo(140, 70);
+                contexto.stroke();
+                
+            }
+            
+            function dibujaArbol(){
+                var canvas = document.getElementById('arbol');
+                var contexto = canvas.getContext('2d');
+                
+                contexto.save();
+                contexto.translate(130, 250);
+                
+                dibujaElementos(contexto);
+                
+                contexto.fillStyle = '#663300';
+                contexto.fillRect(-5, -50, 10, 50);
+                
+      
+                contexto.stroke();
+                contexto.restore();
+                
+            }
+            
+            function dibujaElementos(contexto){
+                contexto.lineWith = 4;
+                contexto.lineJoin = 'round';
+                contexto.strokeStyle = '#663300';
+                
+                contexto.beginPath();
+                contexto.moveTo(-25, 50);
+                contexto.lineTo(-10, -80);
+                contexto.lineTo(-20, -80);
+                contexto.lineTo(-5, -110);
+                contexto.lineTo(-15, -110);
+                
+                contexto.lineTo(0, 140);
+                contexto.lineTo(15, -110);
+                contexto.lineTo(5, -110);
+                contexto.lineTo(20, -80);
+                contexto.lineTo(10, -80);
+                contexto.lineTo(25, -50);
+                
+                
+                contexto.closePath();
+                contexto.fillStyle = '#339900';
+                contexto.fill();
+                  
+            }
+            //"cuando cargues voy a dibujar la diagonal"
+            
+            function dibujaImagen(){
+                var canvas = document.getElementById('imagen');
+                var contexto = canvas.getContext('2d');
+                var imagen = new Image();
+                
+                imagen.onload = function(){
+                    contexto.drawImage(imagen, 50, 70);
+                    
+                };
+                imagen.src = './img/gatito-tierno-bosteza.jpg'
+                
+            }
+            
+            window.addEventListener('load', dibujaDiagonal, true);
+            window.addEventListener('load', dibujaArbol, true);
+            window.addEventListener('load', dibujaImagen, true);
+        </script>
+    </head>
+    <body>
+        <canvas id="diagonal" style="border: 1px solid black; " width="200" height="200"></canvas>
+        <canvas id="arbol" style="border: 1px solid black; " width="400" height="400"></canvas>
+        <button onclick="dibujaDiagonal();">Dibujar</button>
+        <hr>
+        <canvas id="imagen" style="border: 1px solid black; " width="400" height="400"></canvas>
+        
+    </body>
+</html>
